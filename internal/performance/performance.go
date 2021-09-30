@@ -164,7 +164,8 @@ func (c *PerfCollector) processEntityMetrics(metricsValues *types.PerfEntityMetr
 
 		// This is a short-lived object, the purpose is to compute the average of the different performance metrics
 		// when more than one instance per entity returns a value
-		if _, ok := accumulateMetrics[name]; !ok {
+		c.logger.Debugf("metric %v on %v is %v with %v occurances",name,metricsValues.Entity,metricVal,accumulateMetrics[name].Occurrences)
+        if _, ok := accumulateMetrics[name]; !ok {
 			accumulateMetrics[name] = &Accumulator{}
 		}
 		accumulateMetrics[name].Occurrences++
